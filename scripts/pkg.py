@@ -210,6 +210,11 @@ opencolorio_package = Package(
         # configure time and link them statically (with hidden symbols) into
         # libOpenColorIO, so the shared library is self-contained.
         "-DOCIO_INSTALL_EXT_PACKAGES=ALL",
+        # Give the library a private file name and C++ namespace (as
+        # OpenImageIO does for the OCIO it bundles), so it cannot clash with
+        # another OpenColorIO loaded into the same process, e.g. PyOpenColorIO.
+        "-DOCIO_NAMESPACE=OpenColorIO_v2_6_0_pyav",
+        "-DOCIO_LIBNAME_SUFFIX=_v2_6_0_pyav",
     ],
 )
 
